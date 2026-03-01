@@ -86,7 +86,7 @@ If you use this code or findings, please cite:
 
 - **João P. Silva** (jp.silva@usp.br) — ICMC, University of São Paulo
 - João Porto de Albuquerque — University of Glasgow
-- Julio Pedrassoli — ICMC, University of São Paulo
+- Julio Pedrassoli — Department of Geography, University of São Paulo
 - Jose F. Rodrigues-Jr — ICMC, University of São Paulo
 
 ## License
