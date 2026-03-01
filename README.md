@@ -82,6 +82,10 @@ If you use this code or findings, please cite:
 
 > Silva, J.P., Porto de Albuquerque, J., Pedrassoli, J., Rodrigues-Jr, J.F. *The State of Brazilian Favelas: Infrastructural Regimes and Urban Inequality.*
 
+**Database citation** (when using the dataset):
+
+> da Silva, João Pedro (2026), "The State of Brazilian Favelas", Mendeley Data, V1, doi: [10.17632/x959s4g493.1](https://doi.org/10.17632/x959s4g493.1)
+
 ## Authors
 
 - **João P. Silva** (jp.silva@usp.br) — ICMC, University of São Paulo
