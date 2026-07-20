@@ -46,10 +46,10 @@ else:
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
-SHAPEFILE_PATH = Path("./dataset/morphology/components_with_favela.shp")
-IMAGE_BASE_DIR = Path("./dataset/gmaps_slums")
-FEATURES_DIR = Path("./dataset/morphology/output/features")
-OUTPUT_DIR = Path("./dataset/morphology/output/bootstrap_features")
+SHAPEFILE_PATH = Path("../../dataset/morphology/components_with_favela.shp")
+IMAGE_BASE_DIR = Path("../../dataset/gmaps_slums")
+FEATURES_DIR = Path("../../dataset/morphology/output/features")
+OUTPUT_DIR = Path("../../dataset/morphology/output/bootstrap_features")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 STATE_TO_FOLDER = {
