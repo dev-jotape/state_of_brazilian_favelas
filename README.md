@@ -20,7 +20,7 @@ housing conditions, and environmental exposure. This study:
   **improved sanitation access**, **sufficient living area**, **housing durability**
 - Identifies three **infrastructural regimes** — Structured, Partially Structured,
   Unstructured — distributed unevenly across Brazil
-- Examines socio-environmental correlates and predictability of infrastructure access
+- Examines socio-environmental correlates of infrastructure access and the predictability of regime membership
 - Tests whether these regimes leave a measurable **morphological signal** in
   high-resolution satellite imagery
 
@@ -31,9 +31,10 @@ housing conditions, and environmental exposure. This study:
   Southeast and South are predominantly Structured
 - **Water and sanitation** drive regime differentiation; housing and population size
   play a secondary role
-- **Predictability:** non-infrastructural factors explain ~91–92% of variance in the
-  water and sanitation indices (Random Forest with RFE), and predict regime
-  membership with 0.72 overall accuracy
+- **Correlates and predictability:** non-infrastructural indicators account for a
+  moderate share of the variation in the water and sanitation indices (Random Forest
+  with RFECV; five-fold cross-validated R² = 0.42 and 0.49), and predict regime
+  membership with 0.72 overall accuracy on a held-out test set
 - **Morphological signal:** the Structured regime is clearly separable from
   satellite-image features alone (F1 = 0.883); the Unstructured and Partially
   Structured regimes are progressively harder to distinguish
@@ -105,8 +106,10 @@ desktop CPU:
 | Join & finalize dataset | `src/cluster/join_cities_data.ipynb` | Clustered favelas + municipality/locality layers | `dataset/shp/final_version*.shp`, `dataset/json/final_version.json` | ~1–3 min |
 | Regime comparisons | `src/analysis/boxplot.ipynb` | `dataset/shp/final_version*.shp` | Fig. 3 socio-environmental boxplots by regime | ~1 min |
 | Intra-regime inequality | `src/analysis/gini.ipynb` | `dataset/shp/final_version.shp` | Table 1 Gini coefficients per index | < 1 min |
-| Correlation analyses | `src/analysis/simple_corr.ipynb`, `src/analysis/multi_corr.ipynb` | Final dataset / clusters | Correlation tables | ~1 min each |
-| Predictive modelling & SHAP | `src/analysis/predict.ipynb` | `dataset/shp/clusters.shp` | Water R²≈0.91, sanitation R²≈0.92, regime accuracy≈0.72; Figs. 5–7 | ~5–15 min |
+| Correlation analyses | `src/analysis/simple_corr.ipynb` | Final dataset / clusters | Correlation tables | ~1 min |
+| Water and sanitation models & SHAP | `src/analysis/multi_corr.ipynb` | `dataset/shp/clusters.shp` | Selected indicators, cross-validated R² (water ≈ 0.42, sanitation ≈ 0.49); Figs. 5–6 | ~25–50 min |
+| Regime prediction & SHAP | `src/analysis/predict.ipynb` | `dataset/shp/clusters.shp` | Regime accuracy ≈ 0.72 on the 20% test set; Fig. 7 | ~5–15 min |
+| Robustness analyses (reviewer responses) | `src/robustness/` (see `MODEL_DESCRIPTION.md`) | `dataset/clusters/clusters.shp` | Alternative clustering, index specifications, regional stability, spatially blocked validation, models without pollutants (Extended Data Tables 1–5) | RFECV runs take ~25–50 min each |
 | Urban scaling | `src/analysis/urban_scaling_laws.ipynb` | `dataset/shp/final_version.shp` | Scaling-law figures | ~1 min |
 | Morphological signal | `src/analysis/train_bootstrap_features.py` | EfficientNetV2 embeddings (`dataset/morphology/output/`) | Per-regime F1 + 95% CI (Structured ≈ 0.883, Unstructured ≈ 0.699, Partially Structured ≈ 0.535); Table 8 | Longest step; 100 bootstrap iterations |
 
@@ -138,7 +141,8 @@ With the integrated dataset in place, run, in order:
 2. **`src/cluster/join_cities_data.ipynb`** — join clustered favelas with
    municipality/locality data to produce the final integrated dataset.
 3. **Notebooks in `src/analysis/`** — correlation analyses, Gini coefficients, regime
-   comparisons, predictive modelling (Lasso, Random Forest with RFE/SFS), SHAP, urban
+   comparisons, Random Forest models with RFECV (water and sanitation in `multi_corr.ipynb`; regimes in
+   `predict.ipynb`, compared with L1 logistic regression and RF with SFS), SHAP, urban
    scaling.
 4. **`src/analysis/train_bootstrap_features.py`** — EfficientNetV2 feature extraction,
    PCA, and bootstrapped (n = 100) SVM classification of the three regimes from
@@ -152,8 +156,10 @@ With the integrated dataset in place, run, in order:
 | Fig. 1 (hexbin index maps); Fig. 2 (regime radar) | `src/cluster/generate_clusters.ipynb` + mapping in analysis notebooks |
 | Table 1 (intra-regime Gini) | `src/analysis/gini.ipynb` |
 | Fig. 3 (indicator boxplots by regime); Table 5 (regime means) | `src/analysis/boxplot.ipynb` |
-| Figs. 5–6 (SHAP water/sanitation); Fig. 7 (multiclass SHAP); water/sanitation R²; regime accuracy | `src/analysis/predict.ipynb` |
-| Correlation analyses | `src/analysis/simple_corr.ipynb`, `src/analysis/multi_corr.ipynb` |
+| Figs. 5–6 (SHAP water/sanitation); water/sanitation cross-validated R² | `src/analysis/multi_corr.ipynb` |
+| Fig. 7 (multiclass SHAP); regime accuracy | `src/analysis/predict.ipynb` |
+| Extended Data Tables 1–5 (robustness) | `src/robustness/` |
+| Correlation analyses | `src/analysis/simple_corr.ipynb` |
 | Fig. 8, Table 2 (regional distribution); Tables 6–7 (sanitation/water by region) | `src/analysis/` regional analysis + `join_cities_data.ipynb` |
 | Urban scaling | `src/analysis/urban_scaling_laws.ipynb` |
 | Table 8 (morphological classification F1/recall) | `src/analysis/train_bootstrap_features.py` |
@@ -183,10 +189,10 @@ src/
 │   └── join_cities_data.ipynb                   # Joins clustered favelas with municipality/locality data -> final integrated dataset
 └── analysis/
     ├── simple_corr.ipynb                        # Bivariate correlation analyses
-    ├── multi_corr.ipynb                         # Multivariate correlation analyses
+    ├── multi_corr.ipynb                         # Water and sanitation RF + RFECV, SHAP (Figs. 5–6)
     ├── boxplot.ipynb                             # Regime comparisons (Fig. 3)
     ├── gini.ipynb                                # Intra-regime Gini coefficients (Table 1)
-    ├── predict.ipynb                             # Lasso / Random Forest (RFE, SFS), SHAP, regime prediction (Figs. 5–7)
+    ├── predict.ipynb                             # Regime prediction: L1 logistic / Random Forest (RFE, SFS), SHAP (Fig. 7)
     ├── urban_scaling_laws.ipynb                  # Urban scaling analyses
     └── train_bootstrap_features.py               # EfficientNetV2 + bootstrapped SVM (morphological signal, Table 8)
 ```
@@ -233,8 +239,12 @@ dataset/
 
 - **Clustering:** K-means with `k=3`, 10 random initializations, fixed
   `random_state=42` (`src/cluster/generate_clusters.ipynb`).
-- **Predictive modelling:** Lasso, Random Forest (RFE and SFS variants) trained with
-  10-fold cross-validation (`src/analysis/predict.ipynb`).
+- **Random Forest models:** feature selection by RFECV with five-fold cross-validation,
+  default hyperparameters and `random_state=42`. Water and sanitation (50 trees,
+  `src/analysis/multi_corr.ipynb`): R² is reported as the RFECV cross-validated score;
+  the R² printed by the notebook is in-sample and should not be used as a performance
+  measure. Regimes (200 trees, `src/analysis/predict.ipynb`): accuracy on a stratified
+  20% test set. Full settings in `src/robustness/MODEL_DESCRIPTION.md`.
 - **Morphological signal:** bootstrapped evaluation with n = 100 iterations and a fixed
   base seed (`src/analysis/train_bootstrap_features.py`), from which mean F1-scores and
   95% confidence intervals are computed per regime.
@@ -291,7 +301,7 @@ All custom code central to the conclusions of this study is openly available:
 
 The code is released under the **Apache License 2.0** (Section 8). Custom code central to
 the manuscript includes: infrastructure and housing index construction, K-means
-clustering, Gini-coefficient computation, Lasso/Random Forest predictive modelling with
+clustering, Gini-coefficient computation, Random Forest models with RFECV and
 SHAP explanations, and the bootstrapped EfficientNetV2 + SVM morphological-signal
 analysis.
 
