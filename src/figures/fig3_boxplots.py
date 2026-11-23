@@ -51,7 +51,7 @@ FIGS = [
     ("boxplot_polution", ["CO", "O3", "SO2", "NO2"]),
 ]
 BOX_W, BOX_H, H_GAP = 1.1, 3.4, 0.75
-WIDE_TICKS = {"boxplot_polution"}  # long y tick labels (e.g. 0.00018): extra room
+SCI_TICKS = {"boxplot_polution"}  # tiny values (1e-4): scientific notation keeps panel width
 
 
 def main():
@@ -72,8 +72,8 @@ def main():
 
     for fi, (name, vars_) in enumerate(FIGS):
         n = len(vars_)
-        gap = 1.45 if name in WIDE_TICKS else H_GAP
-        fig, axes = plt.subplots(1, n, figsize=(n * BOX_W + (n - 1) * gap + (0.9 if name in WIDE_TICKS else 0), BOX_H))
+        gap = H_GAP
+        fig, axes = plt.subplots(1, n, figsize=(n * BOX_W + (n - 1) * gap, BOX_H))
         axes = np.atleast_1d(axes)
         for ax, var in zip(axes, vars_):
             d = gdf[[var, "cluster"]].dropna()
@@ -86,11 +86,14 @@ def main():
             ax.set_xlabel(PRETTY[var], fontsize=10, labelpad=4)
             ax.set_xticklabels([]); ax.tick_params(axis="x", length=0)
             ax.tick_params(axis="y", labelsize=10, pad=1)
+            if name in SCI_TICKS:
+                ax.ticklabel_format(axis="y", style="sci", scilimits=(-2, 2), useMathText=True)
+                ax.yaxis.get_offset_text().set_fontsize(9)
             ax.set_facecolor("white"); ax.grid(True, color="#ececec", linewidth=0.85)
             ax.margins(x=0.10)
             for sp in ax.spines.values():
                 sp.set_visible(True); sp.set_color("#888888"); sp.set_linewidth(1.55)
-        top = 0.98
+        top = 0.9 if name in SCI_TICKS else 0.98
         if fi == 0:  # legend of the regime colours (R1.15 / R3.25)
             handles = [Patch(facecolor=REGIME_COLORS[k], edgecolor=REGIME_EDGE,
                              label=REGIME_NAMES[k]) for k in order]
@@ -98,8 +101,7 @@ def main():
                        fontsize=10, bbox_to_anchor=(0.5, 1.0), title="Regime",
                        title_fontsize=10, alignment="center")
             top = 0.84
-        fig.subplots_adjust(wspace=gap / BOX_W, top=top, left=0.1 if name in WIDE_TICKS else 0.05,
-                            bottom=0.23, right=0.99 if name in WIDE_TICKS else 1)
+        fig.subplots_adjust(wspace=gap / BOX_W, top=top, left=0.05, bottom=0.23, right=1)
         out = os.path.join(a.outdir, f"{name}.{a.ext}")
         fig.savefig(out)
         print("saved", out)
