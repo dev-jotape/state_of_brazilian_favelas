@@ -10,6 +10,8 @@ Usage (from the repository root):
         --clusters dataset/clusters/clusters.shp \
         --municipalities dataset/br_municipalities_2022/BR_Municipios_2022.shp \
         --out figures/hexbin_map_recreated.png
+    # colour-blind-safe sequential blues (R1.8):
+    python src/figures/fig1_hexbin_maps.py --cmap Blues --cmap-min 0.12 --out figures/hexbin_map_blues.png
 """
 import argparse
 
@@ -36,6 +38,9 @@ def main():
     ap.add_argument("--municipalities", default="dataset/br_municipalities_2022/BR_Municipios_2022.shp")
     ap.add_argument("--out", default="figures/hexbin_map_recreated.png")
     ap.add_argument("--cmap", default=DEFAULT_CMAP)
+    ap.add_argument("--cmap-min", type=float, default=0.0,
+                    help="start of the colormap range (0-1); e.g. 0.12 for Blues so the lowest "
+                         "values stay distinguishable from the white empty cells")
     ap.add_argument("--gridsize", type=int, default=60)
     ap.add_argument("--dpi", type=int, default=150)
     a = ap.parse_args()
@@ -49,6 +54,11 @@ def main():
     states = muni.dissolve(by="uf")
     states["geometry"] = states.geometry.simplify(0.01)
 
+    cmap = plt.get_cmap(a.cmap)
+    if a.cmap_min > 0:
+        cmap = matplotlib.colors.LinearSegmentedColormap.from_list(
+            a.cmap + "_trunc", cmap(np.linspace(a.cmap_min, 1, 256)))
+
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
     hb = None
     for ax, (col, title) in zip(axes.ravel(), INDICES):
@@ -57,7 +67,7 @@ def main():
                   facecolor="none", edgecolor="lightgrey", linewidths=0.3, alpha=0.6)
         hb = ax.hexbin(x, y, C=gdf[col].values, reduce_C_function=np.mean,
                        gridsize=a.gridsize, extent=XLIM + YLIM, mincnt=1,
-                       cmap=a.cmap, vmin=0, vmax=1, linewidths=0.2, edgecolors="face")
+                       cmap=cmap, vmin=0, vmax=1, linewidths=0.2, edgecolors="face")
         states.boundary.plot(ax=ax, color="black", linewidth=0.4)
         ax.set_xlim(XLIM); ax.set_ylim(YLIM)
         ax.set_title(title)
