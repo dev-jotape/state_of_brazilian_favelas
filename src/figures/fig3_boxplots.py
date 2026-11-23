@@ -38,7 +38,7 @@ PRETTY = {
     "hand_3_6": "HAND 3-6m", "hand_6p": "HAND >6m",
     "log_prim_hosp": "Primary Hospitals\n(Distance - log)",
     "log_inp_hosp": "Inpatient Hospitals\n(Distance - log)",
-    "waste_coll": "Waste Collection\n(%)", "log_est_dens": "Establishment Density\n(log)",
+    "waste_coll": "Waste Collection\n(%)", "log_est_dens": "Commercial\nand service\nestablishments\n(density - log)",
     "log_population": "Population\n(log)",
 }
 # (file name, variables); legend is drawn on the first one only
@@ -101,7 +101,7 @@ def main():
                        fontsize=10, bbox_to_anchor=(0.5, 1.0), title="Regime",
                        title_fontsize=10, alignment="center")
             top = 0.84
-        fig.subplots_adjust(wspace=gap / BOX_W, top=top, left=0.05, bottom=0.23, right=1)
+        fig.subplots_adjust(wspace=gap / BOX_W, top=top, left=0.05, bottom=0.32, right=0.985)
         out = os.path.join(a.outdir, f"{name}.{a.ext}")
         fig.savefig(out)
         print("saved", out)
