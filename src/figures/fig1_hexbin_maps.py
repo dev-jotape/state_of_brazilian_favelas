@@ -11,7 +11,8 @@ Usage (from the repository root):
         --municipalities dataset/br_municipalities_2022/BR_Municipios_2022.shp \
         --out figures/hexbin_map_recreated.png
     # colour-blind-safe sequential blues (R1.8):
-    python src/figures/fig1_hexbin_maps.py --cmap Blues --cmap-min 0.12 --out figures/hexbin_map_blues.png
+    python src/figures/fig1_hexbin_maps.py --cmap Blues --cmap-min 0.12 --out figures/hexbin_map.pdf
+    # the journal needs vector (PDF/EPS), >=300 dpi RGB; use a .png --out for a preview.
 """
 import argparse
 
@@ -21,6 +22,9 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
+
+matplotlib.rcParams["pdf.fonttype"] = 42  # editable (TrueType) text in PDF/EPS
+matplotlib.rcParams["ps.fonttype"] = 42
 
 INDICES = [  # (column in clusters.shp, panel title)
     ("wtr_idx", "Improved Water Index"),
@@ -42,7 +46,7 @@ def main():
                     help="start of the colormap range (0-1); e.g. 0.12 for Blues so the lowest "
                          "values stay distinguishable from the white empty cells")
     ap.add_argument("--gridsize", type=int, default=60)
-    ap.add_argument("--dpi", type=int, default=150)
+    ap.add_argument("--dpi", type=int, default=300)
     a = ap.parse_args()
 
     gdf = gpd.read_file(a.clusters).to_crs(4674)
@@ -76,6 +80,7 @@ def main():
     fig.tight_layout(rect=(0, 0, 0.92, 1))
     cax = fig.add_axes([0.93, 0.05, 0.015, 0.9])
     fig.colorbar(hb, cax=cax)
+    # vector output (PDF/EPS) for the journal; PNG only as a preview
     fig.savefig(a.out, dpi=a.dpi)
     print("saved", a.out)
 
