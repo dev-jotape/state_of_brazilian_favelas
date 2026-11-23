@@ -38,7 +38,7 @@ PRETTY = {
     "hand_3_6": "HAND 3-6m", "hand_6p": "HAND >6m",
     "log_prim_hosp": "Primary Hospitals\n(Distance - log)",
     "log_inp_hosp": "Inpatient Hospitals\n(Distance - log)",
-    "waste_coll": "Waste Collection\n(%)", "log_est_dens": "Commercial\nand service\nestablishments\n(density - log)",
+    "waste_coll": "Waste Collection\n(%)", "log_est_dens": "Commercial and service\nestablishment density (log)",
     "log_population": "Population\n(log)",
 }
 # (file name, variables); legend is drawn on the first one only
@@ -51,6 +51,7 @@ FIGS = [
     ("boxplot_polution", ["CO", "O3", "SO2", "NO2"]),
 ]
 BOX_W, BOX_H, H_GAP = 1.1, 3.4, 0.75
+EXTRA_RIGHT = {"boxplot_services": 0.7}  # inches of white space so the long last x label is not clipped
 SCI_TICKS = {"boxplot_polution"}  # tiny values (1e-4): scientific notation keeps panel width
 
 
@@ -73,7 +74,7 @@ def main():
     for fi, (name, vars_) in enumerate(FIGS):
         n = len(vars_)
         gap = H_GAP
-        fig, axes = plt.subplots(1, n, figsize=(n * BOX_W + (n - 1) * gap, BOX_H))
+        fig, axes = plt.subplots(1, n, figsize=(n * BOX_W + (n - 1) * gap + EXTRA_RIGHT.get(name, 0), BOX_H))
         axes = np.atleast_1d(axes)
         for ax, var in zip(axes, vars_):
             d = gdf[[var, "cluster"]].dropna()
@@ -101,7 +102,8 @@ def main():
                        fontsize=10, bbox_to_anchor=(0.5, 1.0), title="Regime",
                        title_fontsize=10, alignment="center")
             top = 0.84
-        fig.subplots_adjust(wspace=gap / BOX_W, top=top, left=0.05, bottom=0.32, right=0.985)
+        fig.subplots_adjust(wspace=gap / BOX_W, top=top, left=0.05 * (n * BOX_W + (n - 1) * gap) / fig.get_figwidth(), bottom=0.27,
+                            right=1 - (0.015 * (n * BOX_W + (n - 1) * gap) + EXTRA_RIGHT.get(name, 0)) / fig.get_figwidth())
         out = os.path.join(a.outdir, f"{name}.{a.ext}")
         fig.savefig(out)
         print("saved", out)
