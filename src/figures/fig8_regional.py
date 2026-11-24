@@ -31,16 +31,16 @@ matplotlib.rcParams["ps.fonttype"] = 42
 UF_REGION = {
     **{u: "North" for u in ["AC", "AP", "AM", "PA", "RO", "RR", "TO"]},
     **{u: "Northeast" for u in ["AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE"]},
-    **{u: "Central-West" for u in ["DF", "GO", "MT", "MS"]},
+    **{u: "Center-West" for u in ["DF", "GO", "MT", "MS"]},
     **{u: "Southeast" for u in ["ES", "MG", "RJ", "SP"]},
     **{u: "South" for u in ["PR", "RS", "SC"]},
 }
-REGIONS = ["North", "Northeast", "Central-West", "Southeast", "South"]
+REGIONS = ["North", "Northeast", "Center-West", "Southeast", "South"]
 # region colours: none of the three regime colours (blue, yellow, vermilion)
-REGION_COLORS = {"North": "#009E73", "Northeast": "#CC79A7", "Central-West": "#6A3D9A",
+REGION_COLORS = {"North": "#009E73", "Northeast": "#CC79A7", "Center-West": "#6A3D9A",
                  "Southeast": "#666666", "South": "#8C510A"}
-REGION_MARKERS = {"North": "o", "Northeast": "s", "Central-West": "^", "Southeast": "D", "South": "P"}
-SANKEY_LEFT_ORDER = ["Southeast", "South", "Northeast", "Central-West", "North"]
+REGION_MARKERS = {"North": "o", "Northeast": "s", "Center-West": "^", "Southeast": "D", "South": "P"}
+SANKEY_LEFT_ORDER = ["Southeast", "South", "Northeast", "Center-West", "North"]
 
 
 def sankey(ax, counts):
