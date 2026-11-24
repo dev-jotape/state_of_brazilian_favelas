@@ -1,4 +1,4 @@
 .DS_STORE
 /dataset/
 /dataset_old/
-venv/
+venv/__pycache__/
