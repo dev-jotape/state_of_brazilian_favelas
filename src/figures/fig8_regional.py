@@ -73,11 +73,16 @@ def sankey(ax, counts):
             ax.add_patch(PathPatch(Path(verts, codes), facecolor=REGIME_COLORS[k], alpha=0.38, edgecolor="none"))
     for r in SANKEY_LEFT_ORDER:
         ax.add_patch(Rectangle((xl, ly[r]), w, left_tot[r], facecolor="#cccccc", edgecolor="#999999", lw=0.6))
-        ax.text(xl - 0.008, ly[r] + left_tot[r] / 2, r, ha="right", va="center", fontsize=9)
+        ax.text(xl + w + 0.006, ly[r] + left_tot[r] / 2, r, ha="left", va="center", fontsize=8, color="#222222")
     for k in sorted(right_tot.index):
         ax.add_patch(Rectangle((xr, ry[k]), w, right_tot[k], facecolor=REGIME_COLORS[k], edgecolor=REGIME_EDGE, lw=0.6))
-        ax.text(xr + w + 0.008, ry[k] + right_tot[k] / 2, REGIME_NAMES[k], ha="left", va="center", fontsize=9)
-    ax.set_xlim(-0.16, 1.2); ax.set_ylim(H, 0); ax.axis("off")
+        ax.text(xr - 0.006, ry[k] + right_tot[k] / 2, REGIME_NAMES[k], ha="right", va="center", fontsize=8, color="#222222")
+    ax.set_xlim(0, 1 + w); ax.set_ylim(H, 0); ax.axis("off")
+
+
+def panel_title(ax, letter, title, x_title=0.055, y=1.03, **kw):
+    ax.text(0, y, letter, transform=ax.transAxes, fontsize=17, fontweight="bold", va="bottom", ha="left")
+    ax.text(x_title, y, title, transform=ax.transAxes, fontsize=12, va="bottom", ha="left", **kw)
 
 
 def main():
@@ -95,53 +100,53 @@ def main():
     counts = gdf.groupby(["region", "cluster"]).size().unstack(fill_value=0).reindex(REGIONS)
     perc = counts.div(counts.sum(axis=1), axis=0) * 100
 
-    fig = plt.figure(figsize=(9, 10.4))
-    gs = fig.add_gridspec(2, 2, height_ratios=[1.75, 1.0], width_ratios=[2.5, 1.0], hspace=0.68, wspace=0.28)
+    grid = "#dddddd"
+    fig = plt.figure(figsize=(9.3, 10.6))
+    gs = fig.add_gridspec(2, 2, height_ratios=[2.15, 1.0], width_ratios=[2.35, 1.0], hspace=0.2, wspace=0.3,
+                          left=0.08, right=0.97, top=0.925, bottom=0.03)
 
-    # (a) scatter by state
+    # (a) scatter by state (circles only, labels below points, as in the original)
     ax = fig.add_subplot(gs[0, 0])
-    texts = []
     for r in REGIONS:
         d = states[states["region"] == r]
-        ax.scatter(d["wtr_idx"], d["sanit_idx"], s=70, marker=REGION_MARKERS[r], color=REGION_COLORS[r],
-                   alpha=0.9, edgecolor="white", linewidth=0.5, label=r, zorder=2)
-    try:
-        from adjustText import adjust_text
-        texts = [ax.text(row.wtr_idx, row.sanit_idx, row.NM_UF, fontsize=6.8) for row in states.itertuples()]
-        adjust_text(texts, ax=ax, expand=(1.15, 1.3), arrowprops=dict(arrowstyle="-", color="#888888", lw=0.4))
-    except ImportError:
-        for row in states.itertuples():
-            ax.text(row.wtr_idx, row.sanit_idx - 0.007, row.NM_UF, fontsize=6.8, ha="center", va="top")
+        ax.scatter(d["wtr_idx"], d["sanit_idx"], s=95, color=REGION_COLORS[r], alpha=0.85, edgecolor="white",
+                   linewidth=0.6, label=r, zorder=2)
+    for row in states.itertuples():
+        ax.annotate(row.NM_UF, (row.wtr_idx, row.sanit_idx), xytext=(0, -9), textcoords="offset points",
+                    ha="center", va="top", fontsize=7.5)
     ax.set_xlabel("Water Index", fontsize=11); ax.set_ylabel("Sanitation Index", fontsize=11)
-    ax.grid(True, alpha=0.25); ax.tick_params(labelsize=9)
-    ax.set_xlim(0.6, 1.03)
-    ax.legend(fontsize=9, loc="upper left", framealpha=0.85)
-    ax.set_title("State-level water and sanitation performance", fontsize=12, loc="left", pad=8)
-    fig.text(0.015, 0.975, "a", fontsize=17, fontweight="bold", va="top")
+    ax.grid(True, color=grid, lw=0.8); ax.set_axisbelow(True)
+    for sp in ax.spines.values():
+        sp.set_color(grid)
+    ax.tick_params(labelsize=9, color=grid)
+    ax.legend(fontsize=9, loc="lower right", framealpha=0.9)
+    panel_title(ax, "a", "State-level water and sanitation performance")
 
-    # (b) stacked bars: regime share by region
+    # (b) stacked bars; legend over the bars (inside the axes, lower part), as in the original
     bx = fig.add_subplot(gs[0, 1])
     bottom = np.zeros(len(REGIONS))
     for k in sorted(perc.columns):
-        bx.bar(np.arange(len(REGIONS)), perc[k].values, bottom=bottom, width=0.62, color=REGIME_COLORS[k],
+        bx.bar(np.arange(len(REGIONS)), perc[k].values, bottom=bottom, width=0.5, color=REGIME_COLORS[k],
                edgecolor=REGIME_EDGE, linewidth=0.7, label=REGIME_NAMES[k])
         bottom += perc[k].values
     bx.set_xticks(np.arange(len(REGIONS))); bx.set_xticklabels(REGIONS, rotation=30, ha="right", fontsize=9)
-    bx.set_ylim(0, 100); bx.set_ylabel("Share of favelas in regime (%)", fontsize=10.5)
-    bx.tick_params(axis="y", labelsize=9)
-    bx.grid(True, axis="y", alpha=0.25); bx.set_axisbelow(True)
+    bx.set_ylim(0, 100); bx.set_ylabel("% in cluster", fontsize=11)
+    bx.tick_params(axis="y", labelsize=9, color=grid)
+    bx.grid(True, axis="y", color=grid, lw=0.8); bx.set_axisbelow(True)
+    for sp in bx.spines.values():
+        sp.set_color(grid)
     h, l = bx.get_legend_handles_labels()
-    bx.legend(h, l, fontsize=8, loc="lower center", bbox_to_anchor=(0.5, -0.42), frameon=False)
-    bx.set_title("Regional distribution of\ninfrastructural regimes", fontsize=11.5, pad=8)
-    fig.text(0.665, 0.975, "b", fontsize=17, fontweight="bold", va="top")
+    bx.legend(h, l, fontsize=8, loc="lower right", framealpha=0.95)
+    bx.text(-0.02, 1.03, "b", transform=bx.transAxes, fontsize=17, fontweight="bold", va="bottom", ha="right")
+    bx.text(0.5, 1.03, "Regional distribution of\ninfrastructural regimes", transform=bx.transAxes, fontsize=12,
+            va="bottom", ha="center")
 
-    # (c) Sankey
+    # (c) Sankey, full width, shorter
     cx = fig.add_subplot(gs[1, :])
     sankey(cx, counts)
-    cx.set_title("Regional contributions to infrastructural regimes", fontsize=12, loc="left", pad=6)
-    fig.text(0.015, 0.36, "c", fontsize=17, fontweight="bold", va="top")
+    panel_title(cx, "c", "Regional contributions to infrastructural regimes", x_title=0.03)
 
-    fig.savefig(a.out, dpi=300, bbox_inches="tight")
+    fig.savefig(a.out, dpi=300)
     print("saved", a.out)
 
 
