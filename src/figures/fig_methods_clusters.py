@@ -2,7 +2,7 @@
 (3) national distribution of the four indices. Vector PDFs with editable text (fonttype 42).
 
 Colours: regimes in the t-SNE use the shared Okabe-Ito palette (palette.py). Elbow and index histograms are not
-about regimes, so they use neutral colours + different line styles/markers (no red/green pairs).
+about regimes, so they use neutral colours + different line styles/markers (no red/green; median = dark grey dotted).
 
 Usage (repo root; --data needs wtr_idx, sanit_idx, liv_a_idx, hh_idx [, cluster]):
     python src/figures/fig_methods_clusters.py --data dataset/shp/final_version_no_missing_values.shp --outdir figures
@@ -32,6 +32,7 @@ COLS = ["wtr_idx", "sanit_idx", "liv_a_idx", "hh_idx"]
 TITLES = ["Improved Water", "Improved Sanitation", "Sufficient Living Area", "Durable Housing"]
 GREY = "#333333"
 SILH = "#009E73"
+MED = "#555555"
 BAR = "#C8C8C8"
 
 
@@ -82,7 +83,7 @@ def dist(df, out):
         bw = (v.max() - v.min()) / 30
         ax.plot(xs, gaussian_kde(v)(xs) * len(v) * bw, color=GREY, lw=1.4)
         ax.axvline(v.mean(), ls="--", color="black", lw=1.4, label=f"Mean: {v.mean():.2f}")
-        ax.axvline(np.median(v), ls=":", color=SILH, lw=1.8, label=f"Median: {np.median(v):.2f}")
+        ax.axvline(np.median(v), ls=":", color=MED, lw=1.8, label=f"Median: {np.median(v):.2f}")
         ax.set_title(t, fontsize=10.5, fontweight="bold")
         ax.set_xlabel("Index Value", fontsize=9); ax.set_ylabel("Frequency", fontsize=9)
         ax.tick_params(labelsize=8); ax.legend(fontsize=8, loc="upper left")
