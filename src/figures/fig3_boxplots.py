@@ -53,8 +53,8 @@ FIGS = [
 BOX_H = 3.4
 # per-figure (panel width, gap, font size) in inches/pt. The wide figures (7 panels) are drawn narrower with a
 # larger font so that, scaled to the 0.88 text width in the article, text stays >= 5 pt (publisher item E.10).
-SIZES = {"boxplot_demographic": (0.8, 0.7, 11), "boxplot_topography": (0.8, 0.7, 11)}
-DEFAULT_SIZE = (1.1, 0.75, 10)
+SIZES = {"boxplot_demographic": (0.8, 0.7, 11, 3.1), "boxplot_topography": (0.8, 0.7, 11, 3.1)}
+DEFAULT_SIZE = (1.1, 0.75, 10, BOX_H)
 EXTRA_RIGHT = {"boxplot_services": 0.7, "boxplot_demographic": 0.2, "boxplot_topography": 0.2}  # inches of white space so the long last x label is not clipped
 SCI_TICKS = {"boxplot_polution"}  # tiny values (1e-4): scientific notation keeps panel width
 
@@ -77,7 +77,7 @@ def main():
 
     for fi, (name, vars_) in enumerate(FIGS):
         n = len(vars_)
-        BOX_W, gap, FS = SIZES.get(name, DEFAULT_SIZE)
+        BOX_W, gap, FS, BOX_H = SIZES.get(name, DEFAULT_SIZE)
         fig, axes = plt.subplots(1, n, figsize=(n * BOX_W + (n - 1) * gap + EXTRA_RIGHT.get(name, 0), BOX_H))
         axes = np.atleast_1d(axes)
         for ax, var in zip(axes, vars_):
