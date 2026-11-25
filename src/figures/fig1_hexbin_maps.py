@@ -25,6 +25,9 @@ import numpy as np
 
 matplotlib.rcParams["pdf.fonttype"] = 42  # editable (TrueType) text in PDF/EPS
 matplotlib.rcParams["ps.fonttype"] = 42
+# Drawn at 7.2 in and shown at 65% of the text width: 11 pt here is ~5.4 pt in print (publisher item E.10).
+for _k in ("font.size", "axes.titlesize", "axes.labelsize", "xtick.labelsize", "ytick.labelsize"):
+    matplotlib.rcParams[_k] = 11
 
 INDICES = [  # (column in clusters.shp, panel title)
     ("wtr_idx", "Improved Water Index"),
@@ -63,7 +66,7 @@ def main():
         cmap = matplotlib.colors.LinearSegmentedColormap.from_list(
             a.cmap + "_trunc", cmap(np.linspace(a.cmap_min, 1, 256)))
 
-    fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+    fig, axes = plt.subplots(2, 2, figsize=(7.2, 6.0))
     hb = None
     for ax, (col, title) in zip(axes.ravel(), INDICES):
         # background grid of empty cells

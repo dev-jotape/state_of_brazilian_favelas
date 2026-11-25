@@ -30,8 +30,8 @@ matplotlib.rcParams["pdf.fonttype"] = 42
 matplotlib.rcParams["ps.fonttype"] = 42
 
 PRETTY = {
-    "age_idx": "Age Index", "literate": "Literacy\n(%)", "depriv_idx": "Deprivation Index",
-    "race_wht": "Race - White\n(%)", "race_brn": "Race - Brown/Pardo\n(%)",
+    "age_idx": "Age\nIndex", "literate": "Literacy\n(%)", "depriv_idx": "Deprivation\nIndex",
+    "race_wht": "Race - White\n(%)", "race_brn": "Race - Brown/\nPardo (%)",
     "race_blk": "Race - Black\n(%)", "CO": "CO", "O3": r"$O_3$", "SO2": r"$SO_2$",
     "NO2": r"$NO_2$", "slope_10": "Slope 0-10%", "slope_20": "Slope 10-20%",
     "slope_30": "Slope 20-30%", "slope_30p": "Slope >30%", "hand_0_3": "HAND 0-3m",
@@ -50,8 +50,12 @@ FIGS = [
     ("boxplot_services", ["log_prim_hosp", "log_inp_hosp", "waste_coll", "log_est_dens"]),
     ("boxplot_polution", ["CO", "O3", "SO2", "NO2"]),
 ]
-BOX_W, BOX_H, H_GAP = 1.1, 3.4, 0.75
-EXTRA_RIGHT = {"boxplot_services": 0.7}  # inches of white space so the long last x label is not clipped
+BOX_H = 3.4
+# per-figure (panel width, gap, font size) in inches/pt. The wide figures (7 panels) are drawn narrower with a
+# larger font so that, scaled to the 0.88 text width in the article, text stays >= 5 pt (publisher item E.10).
+SIZES = {"boxplot_demographic": (0.8, 0.7, 11), "boxplot_topography": (0.8, 0.7, 11)}
+DEFAULT_SIZE = (1.1, 0.75, 10)
+EXTRA_RIGHT = {"boxplot_services": 0.7, "boxplot_demographic": 0.2, "boxplot_topography": 0.2}  # inches of white space so the long last x label is not clipped
 SCI_TICKS = {"boxplot_polution"}  # tiny values (1e-4): scientific notation keeps panel width
 
 
@@ -73,7 +77,7 @@ def main():
 
     for fi, (name, vars_) in enumerate(FIGS):
         n = len(vars_)
-        gap = H_GAP
+        BOX_W, gap, FS = SIZES.get(name, DEFAULT_SIZE)
         fig, axes = plt.subplots(1, n, figsize=(n * BOX_W + (n - 1) * gap + EXTRA_RIGHT.get(name, 0), BOX_H))
         axes = np.atleast_1d(axes)
         for ax, var in zip(axes, vars_):
@@ -84,12 +88,12 @@ def main():
             for patch in ax.patches:  # thin outline keeps the lightest blue visible
                 patch.set_edgecolor(REGIME_EDGE)
             ax.set_title(""); ax.set_ylabel("")
-            ax.set_xlabel(PRETTY[var], fontsize=10, labelpad=4)
+            ax.set_xlabel(PRETTY[var], fontsize=FS, labelpad=4)
             ax.set_xticklabels([]); ax.tick_params(axis="x", length=0)
-            ax.tick_params(axis="y", labelsize=10, pad=1)
+            ax.tick_params(axis="y", labelsize=FS, pad=1)
             if name in SCI_TICKS:
                 ax.ticklabel_format(axis="y", style="sci", scilimits=(-2, 2), useMathText=True)
-                ax.yaxis.get_offset_text().set_fontsize(9)
+                ax.yaxis.get_offset_text().set_fontsize(FS - 1)
             ax.set_facecolor("white"); ax.grid(True, color="#ececec", linewidth=0.85)
             ax.margins(x=0.10)
             for sp in ax.spines.values():
@@ -99,9 +103,9 @@ def main():
             handles = [Patch(facecolor=REGIME_COLORS[k], edgecolor=REGIME_EDGE,
                              label=REGIME_NAMES[k]) for k in order]
             fig.legend(handles=handles, loc="upper center", ncol=3, frameon=False,
-                       fontsize=10, bbox_to_anchor=(0.5, 1.0), title="Regime",
-                       title_fontsize=10, alignment="center")
-            top = 0.84
+                       fontsize=FS, bbox_to_anchor=(0.5, 1.0), title="Regime",
+                       title_fontsize=FS, alignment="center")
+            top = 0.78
         fig.subplots_adjust(wspace=gap / BOX_W, top=top, left=0.05 * (n * BOX_W + (n - 1) * gap) / fig.get_figwidth(), bottom=0.27,
                             right=1 - (0.015 * (n * BOX_W + (n - 1) * gap) + EXTRA_RIGHT.get(name, 0)) / fig.get_figwidth())
         out = os.path.join(a.outdir, f"{name}.{a.ext}")
