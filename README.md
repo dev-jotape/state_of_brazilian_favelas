@@ -111,12 +111,12 @@ desktop CPU:
 | Regime prediction & SHAP | `src/analysis/predict.ipynb` | `dataset/shp/clusters.shp` | Regime accuracy ≈ 0.72 on the 20% test set; Fig. 7 | ~5–15 min |
 | Robustness analyses (reviewer responses) | `src/robustness/` (see `MODEL_DESCRIPTION.md`) | `dataset/clusters/clusters.shp` | Alternative clustering, index specifications, regional stability, spatially blocked validation, models without pollutants (Extended Data Tables 1–5) | RFECV runs take ~25–50 min each |
 | Urban scaling | `src/analysis/urban_scaling_laws.ipynb` | `dataset/shp/final_version.shp` | Scaling-law figures | ~1 min |
-| Morphological signal | `src/analysis/train_bootstrap_features.py` | EfficientNetV2 embeddings (`dataset/morphology/output/`) | Per-regime F1 + 95% CI (Structured ≈ 0.883, Unstructured ≈ 0.699, Partially Structured ≈ 0.535); Table 8 | Longest step; 100 bootstrap iterations |
+| Morphological signal | `src/analysis/train_bootstrap_features.py` | Google Maps Static API images (not distributed) | Per-regime F1 + 95% CI (Structured ≈ 0.883, Unstructured ≈ 0.699, Partially Structured ≈ 0.535); Table 8 | Longest step; 100 bootstrap iterations |
 
-> **Note on imagery:** the original high-resolution satellite tiles cannot be
-> redistributed due to Google Maps licensing restrictions. The morphological-signal
-> demo therefore runs on the **derived EfficientNetV2 feature embeddings** provided in
-> the Mendeley Data deposit, not on raw imagery.
+> **Note on imagery:** the high-resolution satellite images and the image embeddings
+> derived from them are not distributed, owing to Google Maps licensing terms. This
+> step therefore cannot be run from the Mendeley Data deposit; only its aggregate
+> results are reported.
 
 ---
 
@@ -227,8 +227,6 @@ dataset/
 ├── shp/                           # Final integrated dataset used by the analysis notebooks
 │   ├── final_version.shp          # All favelas with indicators, indices and regime labels
 │   └── final_version_no_missing_values.shp  # Same, restricted to complete cases
-├── morphology/                    # EfficientNetV2 embeddings for the morphological-signal analysis
-│   └── output/                    # Derived image feature embeddings (no raw imagery — see licensing note)
 └── json/
     └── final_version.json         # GeoJSON export of the final integrated dataset
 ```
@@ -270,12 +268,9 @@ The Mendeley Data record includes:
   (equivalent to `dataset/shp/` and `dataset/json/`, see Section 4)
 - Raw and intermediate source layers used in `src/pre-processing/`
 - Data dictionary
-- EfficientNetV2 image feature embeddings used in the morphological analysis
-  (`dataset/morphology/output/`)
 
-**Third-party data restriction:** the original high-resolution satellite imagery cannot
-be redistributed due to Google Maps licensing restrictions. Only the derived image
-embeddings used in the experiments are provided.
+**Third-party data restriction:** the high-resolution satellite imagery and the image
+embeddings derived from it are not included, owing to Google Maps licensing terms.
 
 Primary data sources:
 
