@@ -1,0 +1,449 @@
+index,state,range,n_favelas,population
+Water,AC,0-0.50,8,9877
+Water,AC,0.50-0.75,20,20437
+Water,AC,0.75-0.90,31,25484
+Water,AC,0.90-1.00,20,12938
+Water,AL,0-0.50,9,6411
+Water,AL,0.50-0.75,67,44876
+Water,AL,0.75-0.90,53,31564
+Water,AL,0.90-1.00,121,94950
+Water,AM,0-0.50,47,64702
+Water,AM,0.50-0.75,68,136416
+Water,AM,0.75-0.90,76,438700
+Water,AM,0.90-1.00,201,728280
+Water,AP,0-0.50,32,43954
+Water,AP,0.50-0.75,38,56759
+Water,AP,0.75-0.90,29,59423
+Water,AP,0.90-1.00,22,19127
+Water,BA,0-0.50,4,857
+Water,BA,0.50-0.75,10,3601
+Water,BA,0.75-0.90,38,28333
+Water,BA,0.90-1.00,520,1337411
+Water,CE,0-0.50,14,9974
+Water,CE,0.50-0.75,17,19427
+Water,CE,0.75-0.90,77,100644
+Water,CE,0.90-1.00,594,619592
+Water,DF,0-0.50,6,4565
+Water,DF,0.50-0.75,7,40825
+Water,DF,0.75-0.90,10,24202
+Water,DF,0.90-1.00,39,129177
+Water,ES,0-0.50,1,377
+Water,ES,0.50-0.75,4,3628
+Water,ES,0.75-0.90,12,8532
+Water,ES,0.90-1.00,499,585840
+Water,GO,0-0.50,22,14139
+Water,GO,0.50-0.75,18,9053
+Water,GO,0.75-0.90,13,5824
+Water,GO,0.90-1.00,99,65498
+Water,MA,0-0.50,16,33260
+Water,MA,0.50-0.75,55,178399
+Water,MA,0.75-0.90,57,172877
+Water,MA,0.90-1.00,70,119217
+Water,MG,0-0.50,13,11001
+Water,MG,0.50-0.75,16,10647
+Water,MG,0.75-0.90,23,15951
+Water,MG,0.90-1.00,601,702333
+Water,MS,0-0.50,4,1062
+Water,MS,0.50-0.75,4,2508
+Water,MS,0.75-0.90,6,6091
+Water,MS,0.90-1.00,17,7017
+Water,MT,0-0.50,2,1306
+Water,MT,0.50-0.75,3,4009
+Water,MT,0.75-0.90,6,11348
+Water,MT,0.90-1.00,47,65232
+Water,PA,0-0.50,201,265495
+Water,PA,0.50-0.75,219,512941
+Water,PA,0.75-0.90,126,249145
+Water,PA,0.90-1.00,177,495938
+Water,PB,0-0.50,7,2809
+Water,PB,0.50-0.75,8,2301
+Water,PB,0.75-0.90,19,13193
+Water,PB,0.90-1.00,247,192134
+Water,PE,0-0.50,77,54481
+Water,PE,0.50-0.75,155,206465
+Water,PE,0.75-0.90,187,285155
+Water,PE,0.90-1.00,430,545064
+Water,PI,0-0.50,1,247
+Water,PI,0.50-0.75,5,2940
+Water,PI,0.75-0.90,7,7509
+Water,PI,0.90-1.00,160,188348
+Water,PR,0-0.50,3,2856
+Water,PR,0.50-0.75,23,26232
+Water,PR,0.75-0.90,23,31480
+Water,PR,0.90-1.00,587,381551
+Water,RJ,0-0.50,76,50639
+Water,RJ,0.50-0.75,188,127946
+Water,RJ,0.75-0.90,200,227488
+Water,RJ,0.90-1.00,1260,1736321
+Water,RN,0-0.50,0,0
+Water,RN,0.50-0.75,2,1035
+Water,RN,0.75-0.90,4,3975
+Water,RN,0.90-1.00,95,170231
+Water,RO,0-0.50,35,50916
+Water,RO,0.50-0.75,12,9794
+Water,RO,0.75-0.90,16,17944
+Water,RO,0.90-1.00,11,4638
+Water,RR,0-0.50,1,4203
+Water,RR,0.50-0.75,1,881
+Water,RR,0.75-0.90,2,5119
+Water,RR,0.90-1.00,6,5806
+Water,RS,0-0.50,6,2822
+Water,RS,0.50-0.75,44,24798
+Water,RS,0.75-0.90,49,36873
+Water,RS,0.90-1.00,382,352041
+Water,SC,0-0.50,7,3773
+Water,SC,0.50-0.75,18,12178
+Water,SC,0.75-0.90,18,7486
+Water,SC,0.90-1.00,118,85797
+Water,SE,0-0.50,3,360
+Water,SE,0.50-0.75,9,3587
+Water,SE,0.75-0.90,14,7482
+Water,SE,0.90-1.00,159,149514
+Water,SP,0-0.50,71,44092
+Water,SP,0.50-0.75,127,101175
+Water,SP,0.75-0.90,116,151906
+Water,SP,0.90-1.00,2807,3332225
+Water,TO,0-0.50,2,799
+Water,TO,0.50-0.75,2,554
+Water,TO,0.75-0.90,3,2253
+Water,TO,0.90-1.00,32,38715
+Water,Brazil,0-0.50,668,684977
+Water,Brazil,0.50-0.75,1140,1563412
+Water,Brazil,0.75-0.90,1215,1975981
+Water,Brazil,0.90-1.00,9321,12164935
+Sanitation,AC,0-0.50,33,25682
+Sanitation,AC,0.50-0.75,32,24735
+Sanitation,AC,0.75-0.90,12,17563
+Sanitation,AC,0.90-1.00,2,756
+Sanitation,AL,0-0.50,78,42660
+Sanitation,AL,0.50-0.75,144,112665
+Sanitation,AL,0.75-0.90,14,10098
+Sanitation,AL,0.90-1.00,14,12378
+Sanitation,AM,0-0.50,108,155256
+Sanitation,AM,0.50-0.75,199,884568
+Sanitation,AM,0.75-0.90,58,265686
+Sanitation,AM,0.90-1.00,27,62588
+Sanitation,AP,0-0.50,82,126367
+Sanitation,AP,0.50-0.75,39,52896
+Sanitation,AP,0.75-0.90,0,0
+Sanitation,AP,0.90-1.00,0,0
+Sanitation,BA,0-0.50,38,25831
+Sanitation,BA,0.50-0.75,151,168478
+Sanitation,BA,0.75-0.90,100,177481
+Sanitation,BA,0.90-1.00,283,998412
+Sanitation,CE,0-0.50,58,37273
+Sanitation,CE,0.50-0.75,367,337215
+Sanitation,CE,0.75-0.90,99,111524
+Sanitation,CE,0.90-1.00,178,263625
+Sanitation,DF,0-0.50,1,2479
+Sanitation,DF,0.50-0.75,49,83245
+Sanitation,DF,0.75-0.90,3,75146
+Sanitation,DF,0.90-1.00,9,37899
+Sanitation,ES,0-0.50,23,10763
+Sanitation,ES,0.50-0.75,95,94948
+Sanitation,ES,0.75-0.90,97,130925
+Sanitation,ES,0.90-1.00,301,361741
+Sanitation,GO,0-0.50,7,2984
+Sanitation,GO,0.50-0.75,107,75118
+Sanitation,GO,0.75-0.90,14,4592
+Sanitation,GO,0.90-1.00,24,11820
+Sanitation,MA,0-0.50,44,62509
+Sanitation,MA,0.50-0.75,145,422414
+Sanitation,MA,0.75-0.90,7,12442
+Sanitation,MA,0.90-1.00,2,6388
+Sanitation,MG,0-0.50,39,26677
+Sanitation,MG,0.50-0.75,115,84387
+Sanitation,MG,0.75-0.90,82,83821
+Sanitation,MG,0.90-1.00,417,545047
+Sanitation,MS,0-0.50,3,548
+Sanitation,MS,0.50-0.75,27,15928
+Sanitation,MS,0.75-0.90,1,202
+Sanitation,MS,0.90-1.00,0,0
+Sanitation,MT,0-0.50,4,2769
+Sanitation,MT,0.50-0.75,35,52375
+Sanitation,MT,0.75-0.90,13,21733
+Sanitation,MT,0.90-1.00,6,5018
+Sanitation,PA,0-0.50,164,167942
+Sanitation,PA,0.50-0.75,512,1090405
+Sanitation,PA,0.75-0.90,42,261467
+Sanitation,PA,0.90-1.00,5,3705
+Sanitation,PB,0-0.50,46,23555
+Sanitation,PB,0.50-0.75,137,100920
+Sanitation,PB,0.75-0.90,42,43150
+Sanitation,PB,0.90-1.00,56,42812
+Sanitation,PE,0-0.50,204,181898
+Sanitation,PE,0.50-0.75,467,698837
+Sanitation,PE,0.75-0.90,95,141260
+Sanitation,PE,0.90-1.00,83,69170
+Sanitation,PI,0-0.50,13,6952
+Sanitation,PI,0.50-0.75,123,167370
+Sanitation,PI,0.75-0.90,24,17362
+Sanitation,PI,0.90-1.00,13,7360
+Sanitation,PR,0-0.50,26,23231
+Sanitation,PR,0.50-0.75,185,100257
+Sanitation,PR,0.75-0.90,135,107639
+Sanitation,PR,0.90-1.00,290,210992
+Sanitation,RJ,0-0.50,177,84898
+Sanitation,RJ,0.50-0.75,386,328134
+Sanitation,RJ,0.75-0.90,281,459774
+Sanitation,RJ,0.90-1.00,880,1269588
+Sanitation,RN,0-0.50,7,5583
+Sanitation,RN,0.50-0.75,56,98312
+Sanitation,RN,0.75-0.90,11,12848
+Sanitation,RN,0.90-1.00,27,58498
+Sanitation,RO,0-0.50,15,13933
+Sanitation,RO,0.50-0.75,58,69308
+Sanitation,RO,0.75-0.90,1,51
+Sanitation,RO,0.90-1.00,0,0
+Sanitation,RR,0-0.50,0,0
+Sanitation,RR,0.50-0.75,9,15021
+Sanitation,RR,0.75-0.90,1,988
+Sanitation,RR,0.90-1.00,0,0
+Sanitation,RS,0-0.50,53,26785
+Sanitation,RS,0.50-0.75,186,139787
+Sanitation,RS,0.75-0.90,96,132421
+Sanitation,RS,0.90-1.00,146,117541
+Sanitation,SC,0-0.50,22,8792
+Sanitation,SC,0.50-0.75,70,43941
+Sanitation,SC,0.75-0.90,32,17101
+Sanitation,SC,0.90-1.00,37,39400
+Sanitation,SE,0-0.50,20,6362
+Sanitation,SE,0.50-0.75,90,59776
+Sanitation,SE,0.75-0.90,36,43694
+Sanitation,SE,0.90-1.00,39,51111
+Sanitation,SP,0-0.50,360,280766
+Sanitation,SP,0.50-0.75,787,823689
+Sanitation,SP,0.75-0.90,489,760744
+Sanitation,SP,0.90-1.00,1485,1764199
+Sanitation,TO,0-0.50,3,894
+Sanitation,TO,0.50-0.75,28,23934
+Sanitation,TO,0.75-0.90,7,16939
+Sanitation,TO,0.90-1.00,1,554
+Sanitation,Brazil,0-0.50,1628,1353389
+Sanitation,Brazil,0.50-0.75,4599,6168663
+Sanitation,Brazil,0.75-0.90,1792,2926651
+Sanitation,Brazil,0.90-1.00,4325,5940602
+Living area,AC,0-0.50,0,0
+Living area,AC,0.50-0.75,13,13729
+Living area,AC,0.75-0.90,66,55007
+Living area,AC,0.90-1.00,0,0
+Living area,AL,0-0.50,0,0
+Living area,AL,0.50-0.75,37,26068
+Living area,AL,0.75-0.90,212,151660
+Living area,AL,0.90-1.00,1,73
+Living area,AM,0-0.50,35,49609
+Living area,AM,0.50-0.75,229,935868
+Living area,AM,0.75-0.90,127,382478
+Living area,AM,0.90-1.00,1,143
+Living area,AP,0-0.50,3,2896
+Living area,AP,0.50-0.75,106,163485
+Living area,AP,0.75-0.90,12,12882
+Living area,AP,0.90-1.00,0,0
+Living area,BA,0-0.50,0,0
+Living area,BA,0.50-0.75,18,106000
+Living area,BA,0.75-0.90,538,1258391
+Living area,BA,0.90-1.00,16,5811
+Living area,CE,0-0.50,1,957
+Living area,CE,0.50-0.75,103,85333
+Living area,CE,0.75-0.90,591,662286
+Living area,CE,0.90-1.00,7,1061
+Living area,DF,0-0.50,0,0
+Living area,DF,0.50-0.75,7,3498
+Living area,DF,0.75-0.90,55,195271
+Living area,DF,0.90-1.00,0,0
+Living area,ES,0-0.50,0,0
+Living area,ES,0.50-0.75,4,7442
+Living area,ES,0.75-0.90,491,578423
+Living area,ES,0.90-1.00,21,12512
+Living area,GO,0-0.50,0,0
+Living area,GO,0.50-0.75,12,4071
+Living area,GO,0.75-0.90,133,88427
+Living area,GO,0.90-1.00,7,2016
+Living area,MA,0-0.50,0,0
+Living area,MA,0.50-0.75,11,8227
+Living area,MA,0.75-0.90,187,495526
+Living area,MA,0.90-1.00,0,0
+Living area,MG,0-0.50,0,0
+Living area,MG,0.50-0.75,42,40791
+Living area,MG,0.75-0.90,599,697376
+Living area,MG,0.90-1.00,12,1765
+Living area,MS,0-0.50,0,0
+Living area,MS,0.50-0.75,5,3198
+Living area,MS,0.75-0.90,25,13418
+Living area,MS,0.90-1.00,1,62
+Living area,MT,0-0.50,0,0
+Living area,MT,0.50-0.75,1,1498
+Living area,MT,0.75-0.90,56,80117
+Living area,MT,0.90-1.00,1,280
+Living area,PA,0-0.50,3,4629
+Living area,PA,0.50-0.75,145,342954
+Living area,PA,0.75-0.90,573,1175760
+Living area,PA,0.90-1.00,2,176
+Living area,PB,0-0.50,0,0
+Living area,PB,0.50-0.75,14,5599
+Living area,PB,0.75-0.90,259,203719
+Living area,PB,0.90-1.00,8,1119
+Living area,PE,0-0.50,0,0
+Living area,PE,0.50-0.75,35,20735
+Living area,PE,0.75-0.90,801,1067305
+Living area,PE,0.90-1.00,13,3125
+Living area,PI,0-0.50,0,0
+Living area,PI,0.50-0.75,43,36973
+Living area,PI,0.75-0.90,130,162071
+Living area,PI,0.90-1.00,0,0
+Living area,PR,0-0.50,1,1828
+Living area,PR,0.50-0.75,33,15629
+Living area,PR,0.75-0.90,598,421870
+Living area,PR,0.90-1.00,4,2792
+Living area,RJ,0-0.50,13,103920
+Living area,RJ,0.50-0.75,179,416005
+Living area,RJ,0.75-0.90,1467,1602088
+Living area,RJ,0.90-1.00,65,20381
+Living area,RN,0-0.50,0,0
+Living area,RN,0.50-0.75,2,4181
+Living area,RN,0.75-0.90,96,168984
+Living area,RN,0.90-1.00,3,2076
+Living area,RO,0-0.50,0,0
+Living area,RO,0.50-0.75,4,1845
+Living area,RO,0.75-0.90,68,80809
+Living area,RO,0.90-1.00,2,638
+Living area,RR,0-0.50,0,0
+Living area,RR,0.50-0.75,9,15021
+Living area,RR,0.75-0.90,1,988
+Living area,RR,0.90-1.00,0,0
+Living area,RS,0-0.50,0,0
+Living area,RS,0.50-0.75,17,6989
+Living area,RS,0.75-0.90,458,408313
+Living area,RS,0.90-1.00,6,1232
+Living area,SC,0-0.50,0,0
+Living area,SC,0.50-0.75,20,10686
+Living area,SC,0.75-0.90,139,98176
+Living area,SC,0.90-1.00,2,372
+Living area,SE,0-0.50,0,0
+Living area,SE,0.50-0.75,6,1723
+Living area,SE,0.75-0.90,172,158148
+Living area,SE,0.90-1.00,7,1072
+Living area,SP,0-0.50,51,61647
+Living area,SP,0.50-0.75,1237,1518717
+Living area,SP,0.75-0.90,1819,2045084
+Living area,SP,0.90-1.00,14,3950
+Living area,TO,0-0.50,0,0
+Living area,TO,0.50-0.75,2,753
+Living area,TO,0.75-0.90,37,41568
+Living area,TO,0.90-1.00,0,0
+Living area,Brazil,0-0.50,107,225486
+Living area,Brazil,0.50-0.75,2334,3797018
+Living area,Brazil,0.75-0.90,9710,12306145
+Living area,Brazil,0.90-1.00,193,60656
+Household,AC,0-0.50,0,0
+Household,AC,0.50-0.75,0,0
+Household,AC,0.75-0.90,2,1457
+Household,AC,0.90-1.00,77,67279
+Household,AL,0-0.50,0,0
+Household,AL,0.50-0.75,0,0
+Household,AL,0.75-0.90,2,632
+Household,AL,0.90-1.00,248,177169
+Household,AM,0-0.50,0,0
+Household,AM,0.50-0.75,0,0
+Household,AM,0.75-0.90,1,348
+Household,AM,0.90-1.00,391,1367750
+Household,AP,0-0.50,0,0
+Household,AP,0.50-0.75,0,0
+Household,AP,0.75-0.90,1,799
+Household,AP,0.90-1.00,120,178464
+Household,BA,0-0.50,0,0
+Household,BA,0.50-0.75,0,0
+Household,BA,0.75-0.90,1,286
+Household,BA,0.90-1.00,571,1369916
+Household,CE,0-0.50,0,0
+Household,CE,0.50-0.75,1,354
+Household,CE,0.75-0.90,3,901
+Household,CE,0.90-1.00,698,748382
+Household,DF,0-0.50,1,538
+Household,DF,0.50-0.75,1,190
+Household,DF,0.75-0.90,2,2842
+Household,DF,0.90-1.00,58,195199
+Household,ES,0-0.50,0,0
+Household,ES,0.50-0.75,1,377
+Household,ES,0.75-0.90,5,6154
+Household,ES,0.90-1.00,510,591846
+Household,GO,0-0.50,2,420
+Household,GO,0.50-0.75,1,252
+Household,GO,0.75-0.90,5,3283
+Household,GO,0.90-1.00,144,90559
+Household,MA,0-0.50,0,0
+Household,MA,0.50-0.75,0,0
+Household,MA,0.75-0.90,7,12774
+Household,MA,0.90-1.00,191,490979
+Household,MG,0-0.50,5,5710
+Household,MG,0.50-0.75,10,5704
+Household,MG,0.75-0.90,14,24653
+Household,MG,0.90-1.00,624,703865
+Household,MS,0-0.50,0,0
+Household,MS,0.50-0.75,1,222
+Household,MS,0.75-0.90,0,0
+Household,MS,0.90-1.00,30,16456
+Household,MT,0-0.50,0,0
+Household,MT,0.50-0.75,0,0
+Household,MT,0.75-0.90,0,0
+Household,MT,0.90-1.00,58,81895
+Household,PA,0-0.50,0,0
+Household,PA,0.50-0.75,1,1053
+Household,PA,0.75-0.90,2,321
+Household,PA,0.90-1.00,720,1522145
+Household,PB,0-0.50,1,212
+Household,PB,0.50-0.75,0,0
+Household,PB,0.75-0.90,6,2042
+Household,PB,0.90-1.00,274,208183
+Household,PE,0-0.50,4,1300
+Household,PE,0.50-0.75,2,726
+Household,PE,0.75-0.90,7,4974
+Household,PE,0.90-1.00,836,1084165
+Household,PI,0-0.50,0,0
+Household,PI,0.50-0.75,0,0
+Household,PI,0.75-0.90,0,0
+Household,PI,0.90-1.00,173,199044
+Household,PR,0-0.50,1,1149
+Household,PR,0.50-0.75,0,0
+Household,PR,0.75-0.90,4,3575
+Household,PR,0.90-1.00,631,437395
+Household,RJ,0-0.50,1,279
+Household,RJ,0.50-0.75,7,2413
+Household,RJ,0.75-0.90,28,91393
+Household,RJ,0.90-1.00,1688,2048309
+Household,RN,0-0.50,0,0
+Household,RN,0.50-0.75,0,0
+Household,RN,0.75-0.90,0,0
+Household,RN,0.90-1.00,101,175241
+Household,RO,0-0.50,0,0
+Household,RO,0.50-0.75,0,0
+Household,RO,0.75-0.90,0,0
+Household,RO,0.90-1.00,74,83292
+Household,RR,0-0.50,0,0
+Household,RR,0.50-0.75,0,0
+Household,RR,0.75-0.90,0,0
+Household,RR,0.90-1.00,10,16009
+Household,RS,0-0.50,1,245
+Household,RS,0.50-0.75,0,0
+Household,RS,0.75-0.90,1,1798
+Household,RS,0.90-1.00,479,414491
+Household,SC,0-0.50,1,177
+Household,SC,0.50-0.75,0,0
+Household,SC,0.75-0.90,3,849
+Household,SC,0.90-1.00,157,108208
+Household,SE,0-0.50,1,127
+Household,SE,0.50-0.75,2,749
+Household,SE,0.75-0.90,1,49
+Household,SE,0.90-1.00,181,160018
+Household,SP,0-0.50,41,21312
+Household,SP,0.50-0.75,72,52489
+Household,SP,0.75-0.90,96,106004
+Household,SP,0.90-1.00,2912,3449593
+Household,TO,0-0.50,0,0
+Household,TO,0.50-0.75,0,0
+Household,TO,0.75-0.90,1,367
+Household,TO,0.90-1.00,38,41954
+Household,Brazil,0-0.50,59,31469
+Household,Brazil,0.50-0.75,99,64529
+Household,Brazil,0.75-0.90,192,265501
+Household,Brazil,0.90-1.00,11994,16027806
